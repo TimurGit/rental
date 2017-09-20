@@ -12,16 +12,11 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\Models\Opportunity::class, function (Faker\Generator $faker) {
-    $start = $faker->dateTimeThisYear($max = 'now', $timezone = date_default_timezone_get());
+$factory->define(App\Models\TransportLocations::class, function (Faker\Generator $faker) {
     return [
         'transport_id' => function () {
             return factory(App\Models\Transport::class)->create()->id;
         },
-        'user_id' => function () {
-            return factory(App\User::class)->create()->id;
-        },
-        'start' => $start,
-        'finish' => $faker->dateTimeBetween($startDate = $start, $endDate = 'now', $timezone = date_default_timezone_get()),
+        'created_at'=> $faker->dateTimeThisYear($max = 'now', $timezone = date_default_timezone_get()),
     ];
 });

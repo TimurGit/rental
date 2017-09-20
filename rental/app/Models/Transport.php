@@ -23,11 +23,16 @@ class Transport extends Model {
 
     public function mark()
     {
-        return $this->belongsTo('App\Models\Mark');
+        return $this->belongsTo(\App\Models\Mark::class);
     }
 
     public function opportunity()
     {
-        return $this->hasMany('App\Models\Opportunity');
+        return $this->hasMany(\App\Models\Opportunity::class);
+    }
+
+    public function transportLocations()
+    {
+        return $this->hasMany(\App\Models\TransportLocation::class);
     }
 }

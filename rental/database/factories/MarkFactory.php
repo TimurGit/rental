@@ -12,10 +12,8 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\Models\Transport::class, function (Faker\Generator $faker) {
+$factory->define(App\Models\Mark::class, function (Faker\Generator $faker) {
     return [
-        'type_id' => $faker->numberBetween(1,3),
-        'mark_id' => App\Models\Mark::all()->random()->id,
-        'reg_number' => $faker->unique()->regexify('[A-Z][0-9][0-9][0-9][A-Z][A-Z][1]{0,1}[0-9][0-9]'),
+        'name' => $faker->word
     ];
 });

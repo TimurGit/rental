@@ -13,11 +13,11 @@ class Opportunity extends Model {
 
     public function transport()
     {
-        return $this->belongsTo('App\Models\Transport');
+        return $this->belongsTo(\App\Models\Transport::class);
     }
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(\App\User::class);
     }
 }

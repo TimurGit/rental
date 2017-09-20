@@ -13,7 +13,7 @@ class CreateOpportunityTable extends Migration
      */
     public function up()
     {
-        Schema::create('opportunity', function (Blueprint $table) {
+        Schema::create('opportunities', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('transport_id')->unsigned()->index();
             $table->foreign('transport_id')->references('id')->on('transports')->onDelete('cascade');
