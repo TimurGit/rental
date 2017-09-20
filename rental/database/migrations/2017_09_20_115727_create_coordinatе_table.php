@@ -17,9 +17,10 @@ class CreateCoordinatеTable extends Migration
             $table->increments('id');
             $table->integer('transport_id')->unsigned()->index();
             $table->foreign('transport_id')->references('id')->on('transports')->onDelete('cascade');
-            DB::statement('ALTER TABLE transport_locations ADD location POINT' );
             $table->timestamps();
         });
+        DB::statement('ALTER TABLE transport_locations ADD location POINT' );
+
     }
 
     /**
