@@ -11,6 +11,6 @@ class Mark extends Model {
 
     public function transport()
     {
-        return $this->hasMany('App\Models\Mark');
+        return $this->hasMany('App\Models\Transport');
     }
 }
