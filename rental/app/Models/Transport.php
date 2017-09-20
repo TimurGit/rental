@@ -26,7 +26,7 @@ class Transport extends Model {
         return $this->belongsTo(\App\Models\Mark::class);
     }
 
-    public function opportunity()
+    public function opportunities()
     {
         return $this->hasMany(\App\Models\Opportunity::class);
     }

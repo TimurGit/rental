@@ -11,6 +11,6 @@ class OpportunitiesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Opportunity::class, 50)->create();
+        factory(App\Models\Opportunity::class, 5000)->create();
     }
 }

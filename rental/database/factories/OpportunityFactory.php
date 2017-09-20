@@ -14,14 +14,11 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Models\Opportunity::class, function (Faker\Generator $faker) {
     $start = $faker->dateTimeThisYear($max = 'now', $timezone = date_default_timezone_get());
+    $days = $faker->numberBetween($min = 1, $max = 10);
     return [
-        'transport_id' => function () {
-            return factory(App\Models\Transport::class)->create()->id;
-        },
-        'user_id' => function () {
-            return factory(App\User::class)->create()->id;
-        },
+        'transport_id' => App\Models\Transport::all()->random()->id,
+        'user_id' => App\User::all()->random()->id,
         'start' => $start,
-        'finish' => $faker->dateTimeBetween($startDate = $start, $endDate = 'now', $timezone = date_default_timezone_get()),
+        'finish' => $faker->dateTimeInInterval($startDate = $start, $interval = '+ '.$days.' days', $timezone = date_default_timezone_get()),
     ];
 });
