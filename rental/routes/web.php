@@ -14,6 +14,6 @@
 //Route::get('/', function () {
 //    return view('welcome');
 //});
-Route::get('/opportunities', 'Opportunities@index');
-Route::get('/transport', 'TransportController@index');
-Route::get('/transport/{id}/edit', 'TransportController@edit');
+Route::get('/opportunities', 'OpportunityController@index');
+Route::get('/transports', 'TransportController@index');
+Route::get('/transports/{id}/edit', 'TransportController@edit');

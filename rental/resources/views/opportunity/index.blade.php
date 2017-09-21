@@ -1,25 +1,27 @@
 @extends('layout')
 @section('content')
 <div class="container-fluid mrg-2em">
-    <h1>Парк автомобилей</h1>
+    <h1>История проекта</h1>
     <table class="table">
         <thead>
         <tr>
-            <th>Номер</th>
-            <th>Тип</th>
+            <th>Дата взятия</th>
+            <th>Дата сдачи</th>
+            <th>Рег. номер</th>
+            <th>Тип авто</th>
             <th>Марка</th>
-            <th width="300px;">Action</th>
+            <th>ФИО</th>
         </tr>
         </thead>
         <tbody>
-            @forelse($transports as $key => $value)
+            @forelse($data as $key => $value)
                 <tr>
-                    <td><a href="/transport/{{$value->id}}/edit">{{ $value->reg_number }}</a></td>
-                    <td>{{ $value->type_name }}</td>
-                    <td>{{ $value->mark->name }}</td>
-                    <td>
-                        <button class="btn btn-danger">Delete</button>
-                    </td>
+                    <td>{{ $value->start}}</td>
+                    <td>{{ $value->finish or ''}}</td>
+                    <td><a href="/transports/{{$value->transport->id}}/edit">{{ $value->transport->reg_number }}</a></td>
+                    <td>{{ $value->transport->type_name }}</td>
+                    <td>{{ $value->transport->mark->name }}</td>
+                    <td>{{ $value->user->name }}</td>
                 </tr>
             @empty
             <tr>
@@ -29,6 +31,6 @@
         </tbody>
     </table>
 
-    {!! $transports->render() !!}
+    {!! $data->render() !!}
 <div>
 @endsection
