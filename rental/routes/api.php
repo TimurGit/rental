@@ -18,3 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/opportunities','Api\OpportunityController@index');
+Route::get('/transports','Api\TransportController@index');
+Route::get('/userlist','Api\UserController@index');

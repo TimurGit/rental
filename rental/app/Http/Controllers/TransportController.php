@@ -19,4 +19,12 @@ class TransportController extends Controller
         $opportunities = $transport->opportunities()->paginate(10);
         return view('transport.edit',compact('transport','opportunities'));
     }
+
+
+    public function create()
+    {
+        $transport = Transport::find($id);
+        $opportunities = $transport->opportunities()->paginate(10);
+        return view('transport.edit',compact('transport','opportunities'));
+    }
 }
