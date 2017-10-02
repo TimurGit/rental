@@ -7,7 +7,7 @@
                      placeholder="Начните вводить ФИО" open-direction="bottom"
                      :options="users" :multiple="false" :searchable="true"
                      :loading="isLoading" :internal-search="false"
-                     :clear-on-select="false" :close-on-select="false" :options-limit="300"
+                     :clear-on-select="true" :close-on-select="false" :options-limit="300"
                      :limit="3" :limit-text="limitText" :max-height="600" :show-no-results="false"
                      :hide-selected="true" @search-change="asyncFind">
             <template slot="clear" scope="props">
@@ -25,11 +25,23 @@
     Vue.component('multiselect', Multiselect)
 
     export default {
+
+        props:{
+
+            selectedUsers: {
+                type: Object,
+                default () {
+                    return {
+                        value: 0,
+                        label: 'ФИО',
+                    }
+                }
+            }
+        },
         // OR register locally
         components: { Multiselect },
         data () {
             return {
-                selectedUsers: [],
                 users: [],
                 isLoading: false,
                 errors:[]

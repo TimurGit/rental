@@ -4,10 +4,10 @@
         <label class="typo__label" for="transport">Регистрационный номер</label>
         <multiselect v-model="selectedTransports"
                      id="transport" label="label" track-by="value"
-                     placeholder="Начните вводить Рег. номер" open-direction="bottom"
+                     placeholder="Начните вводить рег. номер" open-direction="bottom"
                      :options="transports" :multiple="false" :searchable="true"
                      :loading="isLoading" :internal-search="false"
-                     :clear-on-select="false" :close-on-select="false" :options-limit="300"
+                     :clear-on-select="true" :close-on-select="false" :options-limit="300"
                      :limit="3" :limit-text="limitText" :max-height="600" :show-no-results="false"
                      :hide-selected="true" @search-change="asyncFind">
             <template slot="clear" scope="props">
@@ -25,11 +25,21 @@
     Vue.component('multiselect', Multiselect)
 
     export default {
+        props:{
+            selectedTransports: {
+                type: Object,
+                default () {
+                    return {
+                        value: 0,
+                        label: 'Номер',
+                    }
+                }
+            }
+        },
         // OR register locally
         components: { Multiselect },
         data () {
             return {
-                selectedTransports: [],
                 transports: [],
                 isLoading: false,
                 errors:[]
@@ -66,3 +76,9 @@
 <!-- New step!
      Add Multiselect CSS. Can be added as a static asset or inside a component. -->
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
+
+<style>
+    .multiselect__content-wrapper{
+        z-index: 4;
+    }
+</style>

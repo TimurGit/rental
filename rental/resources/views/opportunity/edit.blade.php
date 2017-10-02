@@ -6,7 +6,7 @@
             <h2>Основные данные</h2>
             <form method="POST" action="/opportunities/{{$opportunity->id}}/edit">
                 {{ csrf_field() }}
-                   <select-transport></select-transport>
+                   <select-transport :selected-transports="{ 'value':'{{$opportunity->transport_id}}','label':'{{$opportunity->transport->reg_number}}'}"></select-transport>
                     {{--<label for="reg_number">Регистрационный номер (здесь по нормальному должен быть lookup)</label>--}}
                     {{--<input type="text" class="form-control" name="reg_number" value="{{$opportunity->reg_number}}">--}}
                 <div class="form-group">
@@ -17,7 +17,7 @@
                     <label for="finish">Дата окончания</label>
                     <input type="text" class="form-control" name="finish" value="{{$opportunity->finish}}">
                 </div>
-                    <select-user></select-user>
+                <select-user :selected-users="{ 'value':'{{$opportunity->user_id}}','label':'{{$opportunity->user->name}}'}"></select-user>
                 <div class="form-group">
                     <button type="submit" class="btn">Создать</button>
                 </div>
