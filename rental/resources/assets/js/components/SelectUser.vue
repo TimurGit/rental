@@ -1,20 +1,20 @@
 <!-- Vue component -->
 <template>
     <div class="form-group">
-        <label class="typo__label" for="transport">Регистрационный номер</label>
-        <multiselect v-model="selectedTransports"
-                     id="transport" label="label" track-by="value"
-                     placeholder="Начните вводить Рег. номер" open-direction="bottom"
-                     :options="transports" :multiple="false" :searchable="true"
+        <label class="typo__label" for="user">ФИО</label>
+        <multiselect v-model="selectedUsers"
+                     id="user" label="label" track-by="value"
+                     placeholder="Начните вводить ФИО" open-direction="bottom"
+                     :options="users" :multiple="false" :searchable="true"
                      :loading="isLoading" :internal-search="false"
                      :clear-on-select="false" :close-on-select="false" :options-limit="300"
                      :limit="3" :limit-text="limitText" :max-height="600" :show-no-results="false"
                      :hide-selected="true" @search-change="asyncFind">
             <template slot="clear" scope="props">
-                <div class="multiselect__clear" v-if="selectedTransports.length" @mousedown.prevent.stop="clearAll(props.search)"></div>
+                <div class="multiselect__clear" v-if="selectedUsers.length" @mousedown.prevent.stop="clearAll(props.search)"></div>
             </template><span slot="noResult">Oops! No elements found. Consider changing the search query.</span>
         </multiselect>
-        <input type="hidden" name="transport_id" :value="selectedTransports.value">
+        <input type="hidden" name="user_id" :value="selectedUsers.value">
     </div>
 </template>
 
@@ -29,25 +29,25 @@
         components: { Multiselect },
         data () {
             return {
-                selectedTransports: [],
-                transports: [],
+                selectedUsers: [],
+                users: [],
                 isLoading: false,
                 errors:[]
             }
         },
         methods: {
             limitText (count) {
-                return `and ${count} other transports`
+                return `and ${count} other users`
             },
             asyncFind (query) {
                 if (query) {
                     this.isLoading = true
 
-                    axios.get('/api/transports', {
+                    axios.get('/api/userlist', {
                         params: {q: query}
                     })
                         .then(response => {
-                            this.transports = response.data
+                            this.users = response.data
                             this.isLoading = false
                         })
                         .catch(e => {
@@ -57,7 +57,7 @@
                 }
             },
             clearAll () {
-                this.selectedTransports = []
+                this.selectedUsers = []
             }
         }
     }
@@ -66,3 +66,4 @@
 <!-- New step!
      Add Multiselect CSS. Can be added as a static asset or inside a component. -->
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
+
