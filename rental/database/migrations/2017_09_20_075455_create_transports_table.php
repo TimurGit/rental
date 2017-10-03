@@ -15,7 +15,7 @@ class CreateTransportsTable extends Migration
     {
         Schema::create('transports', function (Blueprint $table) {
             $table->increments('id');
-            $table->tinyInteger('type_id');
+            $table->tinyInteger('type_id')->index();
             $table->integer('mark_id')->unsigned()->index();
             $table->foreign('mark_id')->references('id')->on('marks');
             $table->string('reg_number');

@@ -38,7 +38,5 @@ class OpportunityController extends Controller
         $opportunity = Opportunity::find($id);
         return view('opportunity.edit',compact('opportunity'));
     }
-//SELECT t.id, avg(TIMESTAMPDIFF(SECOND, op.start, op.finish))  FROM `transports` t
-//LEFT JOIN opportunities op ON t.id=op.transport_id
-//GROUP BY t.type_id, t.mark_id
+
 }

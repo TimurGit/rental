@@ -26,15 +26,22 @@ class TransportLocationsTableSeeder extends Seeder
             $countPoints = $facker->numberBetween(20,100);
 //            $lat = $facker->randomFloat(14,-90,90);
 //            $lon = $facker->randomFloat(14,-180,180);
-
+            $start = $facker->dateTimeThisYear($max = 'now', $timezone = date_default_timezone_get());
             for ($i = 1; $i <= $countPoints; $i++) {
 
                 $randomArrayPoints = $facker->numberBetween(1,5000);
+
+                $days = $facker->numberBetween($min = 1, $max = 10);
+                $finished = $facker->dateTimeInInterval($startDate = $start, $interval = '+ '.$days.' minutes', $timezone = date_default_timezone_get());
+
                 \App\Models\TransportLocation::create([
                     'transport_id'=>$transport->id,
                     'lat'=>$arrayPoints[$randomArrayPoints]['lat'],
                     'lon'=>$arrayPoints[$randomArrayPoints]['lon'],
+                    'created_at'=> $start,
+                    'finished_at'=> $finished
                 ]);
+                $start = $finished;
 //                $lat += $facker->randomFloat(4,-1,1);
 //                $lon += $facker->randomFloat(4,-1,1);
 

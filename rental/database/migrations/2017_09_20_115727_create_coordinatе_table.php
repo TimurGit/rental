@@ -17,9 +17,10 @@ class CreateCoordinatеTable extends Migration
             $table->increments('id');
             $table->integer('transport_id')->unsigned()->index();
             $table->foreign('transport_id')->references('id')->on('transports')->onDelete('cascade');
-            $table->decimal('lon', 18, 14);
-            $table->decimal('lat', 18, 14);
+            $table->decimal('lon', 18, 14)->index();
+            $table->decimal('lat', 18, 14)->index();
             $table->timestamps();
+            $table->datetime('finished_at')->nullable();
         });
 
     }

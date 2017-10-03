@@ -1,3 +1,8 @@
+
+--
+-- База данных: `rental`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -78,7 +83,8 @@ CREATE TABLE `transport_locations` (
   `lon` decimal(18,14) NOT NULL,
   `lat` decimal(18,14) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `finished_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -132,14 +138,18 @@ ALTER TABLE `password_resets`
 --
 ALTER TABLE `transports`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `transports_mark_id_index` (`mark_id`);
+  ADD KEY `transports_mark_id_index` (`mark_id`),
+  ADD KEY `type_id` (`type_id`);
 
 --
 -- Индексы таблицы `transport_locations`
 --
 ALTER TABLE `transport_locations`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `transport_locations_transport_id_index` (`transport_id`);
+  ADD KEY `transport_locations_transport_id_index` (`transport_id`),
+  ADD KEY `lat_lon` (`lon`,`lat`),
+  ADD KEY `lat` (`lat`),
+  ADD KEY `lon` (`lon`);
 
 --
 -- Индексы таблицы `users`
@@ -166,7 +176,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT для таблицы `opportunities`
 --
 ALTER TABLE `opportunities`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150001;
 --
 -- AUTO_INCREMENT для таблицы `transports`
 --
@@ -176,7 +186,7 @@ ALTER TABLE `transports`
 -- AUTO_INCREMENT для таблицы `transport_locations`
 --
 ALTER TABLE `transport_locations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125300;
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
