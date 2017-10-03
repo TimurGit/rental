@@ -11,6 +11,6 @@ class TransportsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Transport::class, 50)->create();
+        factory(App\Models\Transport::class, 500000)->create();
     }
 }
